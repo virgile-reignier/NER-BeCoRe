@@ -42,7 +42,7 @@ import spacy
 
 
 def nlp(regestes):
-    nlp = spacy.load("fr_core_news_md")
+    nlp = spacy.load("fr_core_news_lg")
     trial_with_identity, trial_with_part_of_speech, regestes_inutilisables = [], [], []
     for regeste_original in regestes:
         regeste = regeste_original
@@ -53,21 +53,21 @@ def nlp(regestes):
                 i += 1
             regeste = regeste.split(crochet, 1)[0] + regeste.split("]", 1)[1]
         text = nlp(regeste)
-        if "VERB" in [tok.pos_ for tok in text] and text.ents:
+        if "VERB" in [tok.pos_ for tok in text] and text.ents and (text[0].pos_ == "PROPN" or len(str(text[0])) == 1):
             trial_with_identity.append([regeste_original, text.ents[0].text, text.ents[0].label_])
             i = 0
             while text[i].pos_ != "VERB":
                 i += 1
-            premier_groupe_mot = regeste.split(str(text[i]))[0]
+            premier_groupe_mot = regeste_original.split(str(text[i]))[0]
             while premier_groupe_mot[-1] in [" ", ","]:
                 premier_groupe_mot = premier_groupe_mot[:-1]
             trial_with_part_of_speech.append([regeste_original, premier_groupe_mot])
-
         else:
             regestes_inutilisables.append([regeste_original])
     return regestes_inutilisables, trial_with_identity, trial_with_part_of_speech
 
 # TODO : Améliorer encore le modèle en virant tout ce qui ne commence pas par un nom !
+
 
 if __name__ == '__main__':
     file = 'cei_complete.xml'
