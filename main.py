@@ -100,11 +100,17 @@ def nlp_regestes(regestes, language):
 
 
 from langdetect import detect
+import click
 
-if __name__ == '__main__':
-    file = 'goettweig_corpus_saved.xml'
-    result_unused, result_pos = 'unused.csv', 'results_with_pos.csv'
-    list_regestes, no_regeste, balises = extract_regeste(file)
+@click.command()
+@click.argument("path", type=str)
+def reco_issuer(path):
+    """
+    :param path: path for cei source file
+    :return: 2 files, 1 for extracting issuers and 1 for unusable regests
+    """
+    result_unused, result_pos = 'unused.csv', 'results.csv'
+    list_regestes, no_regeste, balises = extract_regeste(path)
     language = detect(list_regestes[list(list_regestes.keys())[0]])
     unusables_regestes, regestes_pos = nlp_regestes(list_regestes, language)
     for result in regestes_pos:
@@ -119,3 +125,7 @@ if __name__ == '__main__':
               [[key] + values for key, values in unusables_regestes.items()], result_unused)
     save_list([["id", "regeste", "string_before_first_verb", "issuer_jacky", "is_same"]] +
               [[key] + values for key, values in regestes_pos.items()], result_pos)
+
+
+if __name__ == '__main__':
+    reco_issuer()
