@@ -1,4 +1,4 @@
-Named entities Recognition for BeCoRe project
+Named Entity Recognition for BeCoRe project
 ===
 
 As part of the [BeCoRe project](https://drd.hypotheses.org/anr-fwf-becore), we tried to create a script that would automatically identify the issuers of acts on the basis of their regeste.
