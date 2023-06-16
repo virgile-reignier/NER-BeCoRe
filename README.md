@@ -9,13 +9,13 @@ Runs with python 3.10 and packages listed in requirements.txt
 
 ## Using language model
 
-This script is based on the spacy package and requires the installation of the language models that will be used: https://spacy.io/usage/models/
+This script is based on the spacy package and requires the installation of the language models that will be used: https://spacy.io/usage/models/.
 
-Please note: we have only used the 'lg' versions of the language models proposed by spacy, which are very heavy.
+Please note: we have only used the 'lg' versions of the language models proposed by spacy.
 
 ## Results
 
-This script was used with two corpora: 1 - the acts of the abbey of Fontenay (encoded by Dominique Stutzmann) with regests in French 2 - the acts of the abbey of Gottweig (whose issuers are encoded by Jacqueline Schindler) with regests in German.
+This script was used with two corpora from [monasterium.net](https://www.monasterium.net/mom/home): 1 - the acts of the abbey of Fontenay (encoded by Dominique Stutzmann) with regests in French 2 - the acts of the abbey of Gottweig (whose issuers are encoded by Jacqueline Schindler) with regests in German.
 
 Several trials were carried out and their results are stored in eponymous files. The current .csv files are the results of the last test with the Gottweig acts.
 
